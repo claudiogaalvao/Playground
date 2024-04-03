@@ -10,8 +10,8 @@ class MainViewModel: ViewModel() {
     private val _cartUiState = MutableLiveData<CartUiState>()
     val cartUiState: LiveData<CartUiState> = _cartUiState
 
-//    private val _cartUiStateFlow = MutableStateFlow<CartUiState>(emptyList())
-//    val cartUiStateFlow: MutableStateFlow<CartUiState> = _cartUiStateFlow
+//    private val _cartUiStateFlow = MutableStateFlow<CartUiState>(CartUiState(emptyList()))
+//    val cartUiStateFlow: StateFlow<CartUiState> = _cartUiStateFlow
 
     init {
         _cartUiState.value = CartUiState(
@@ -21,6 +21,13 @@ class MainViewModel: ViewModel() {
                 CartItem(3, "espresso", 0)
             )
         )
+//        _cartUiStateFlow.value = CartUiState(
+//            items = listOf(
+//                CartItem(1, "coffee", 0),
+//                CartItem(2, "tea", 0),
+//                CartItem(3, "espresso", 0)
+//            )
+//        )
     }
 
     fun incrementCartItemCount(itemId: Int) {
@@ -33,6 +40,15 @@ class MainViewModel: ViewModel() {
                 }
             } ?: emptyList()
         )
+//        _cartUiStateFlow.value = _cartUiStateFlow.value.copy(
+//            items = _cartUiStateFlow.value.items.map {
+//                if (it.id == itemId) {
+//                    it.copy(quantity = it.quantity + 1)
+//                } else {
+//                    it
+//                }
+//            }
+//        )
     }
 
     fun decrementCartItemCount(itemId: Int) {
@@ -45,6 +61,15 @@ class MainViewModel: ViewModel() {
                 }
             } ?: emptyList()
         )
+//        _cartUiStateFlow.value = _cartUiStateFlow.value.copy(
+//            items = _cartUiStateFlow.value.items.map {
+//                if (it.id == itemId) {
+//                    it.copy(quantity = it.quantity - 1)
+//                } else {
+//                    it
+//                }
+//            }
+//        )
     }
 
 

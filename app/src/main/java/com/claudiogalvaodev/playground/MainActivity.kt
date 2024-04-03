@@ -29,7 +29,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val viewModel: MainViewModel = viewModel()
-            val cartUiState by viewModel.cartUiState.observeAsState()
+             val cartUiState by viewModel.cartUiState.observeAsState()
+//            val cartUiState by viewModel.cartUiStateFlow.collectAsState()
 
             PlaygroundTheme {
                 Surface(
@@ -38,8 +39,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     StatelessCart(
                         cartUiState = cartUiState ?: CartUiState(emptyList()),
-                        onDecrement = { viewModel.decrementCartItemCount(1) },
-                        onIncrement = { viewModel.incrementCartItemCount(1) }
+                        onDecrement = { id -> viewModel.decrementCartItemCount(id) },
+                        onIncrement = { id -> viewModel.incrementCartItemCount(id) }
                     )
                 }
             }
